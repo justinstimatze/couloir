@@ -1,0 +1,13 @@
+/couloir
+/backtest
+go.work
+go.work.sum
+.plancheck-debug.json
+
+# editor / OS cruft
+*.swp
+*.swo
+*~
+.DS_Store
+.idea/
+.vscode/
