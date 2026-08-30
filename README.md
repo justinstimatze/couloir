@@ -85,11 +85,14 @@ shows what's currently registered.
 
 ## Status
 
-Early and still tuning against real usage. Several rungs across the
-ladder have no reliable signal source yet and are documented as such
-rather than approximated, and the thresholds that decide when a
-suggestion is "ripe" are starting defaults, still waiting on real usage
-to measure them properly. Some of what a rung measures — a team's
+Early, and every threshold so far reflects one person's usage — the
+author's own, hundreds of real sessions deep but a single developer's
+habits and cadence, not yet checked against anyone else's. Several
+rungs across the ladder have no reliable signal source yet and are
+documented as such rather than approximated, and the thresholds that
+decide when a suggestion is "ripe" are starting defaults, still
+waiting on a second real user to measure them properly. Some of what
+a rung measures — a team's
 stated process, a UI-only setting, how carefully someone reviews
 mid-stream — leaves no trace in a tool call or a session transcript at
 all, and stays honestly unscored rather than guessed at.
