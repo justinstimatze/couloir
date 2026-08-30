@@ -1,8 +1,10 @@
 package action
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
+	"sync"
 	"testing"
 	"time"
 )
@@ -107,6 +109,74 @@ func TestAcquireCooldownLockTakesOverAStaleLock(t *testing.T) {
 		t.Fatal("acquire over a stale lock failed, want it taken over")
 	}
 	release()
+}
+
+// TestConcurrentLoadSelectSaveNeverLosesAWinnersUpdate reproduces the
+// original 2026-08-30 incident directly: many real concurrent callers
+// running the full load-mutate-save sequence against ONE shared cooldown
+// file, the exact shape runNudge runs on every UserPromptSubmit across
+// every session on a host. The earlier lock tests only prove a second
+// acquire blocks while the first is held -- sequentially, one at a time.
+//
+// The invariant under real concurrent load is NOT "every caller
+// succeeds" -- AcquireCooldownLock's own documented contract is a bounded
+// wait budget, and a caller that times out is meant to skip cleanly
+// rather than force its way in (cooldown.go's own doc comment: "the
+// caller should skip this turn's nudge rather than risk clobbering a
+// concurrent session's update"). The actual property that matters, the
+// one the original bug violated, is that no WINNER's update ever goes
+// missing from the final file -- silent data loss among callers who
+// believed they'd written successfully, not merely conservative timeouts
+// among callers who knew they hadn't.
+func TestConcurrentLoadSelectSaveNeverLosesAWinnersUpdate(t *testing.T) {
+	dir := t.TempDir()
+	cooldownPath := filepath.Join(dir, "cooldown.json")
+	lockPath := filepath.Join(dir, "cooldown.lock")
+
+	const n = 40
+	var wg sync.WaitGroup
+	var mu sync.Mutex
+	won := map[string]bool{}
+	var timedOut int
+
+	for i := 0; i < n; i++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			release, ok := AcquireCooldownLock(lockPath)
+			if !ok {
+				mu.Lock()
+				timedOut++
+				mu.Unlock()
+				return // documented, expected outcome under contention -- not a failure
+			}
+			defer release()
+
+			category := fmt.Sprintf("category%d", i)
+			state := LoadCooldown(cooldownPath)
+			state.LastShown[category] = time.Now()
+			if err := SaveCooldown(cooldownPath, state); err != nil {
+				t.Errorf("goroutine %d: SaveCooldown: %v", i, err)
+				return
+			}
+			mu.Lock()
+			won[category] = true
+			mu.Unlock()
+		}(i)
+	}
+	wg.Wait()
+
+	t.Logf("%d/%d acquired the lock within the wait budget, %d timed out and skipped cleanly", len(won), n, timedOut)
+
+	final := LoadCooldown(cooldownPath)
+	for category := range won {
+		if _, present := final.LastShown[category]; !present {
+			t.Errorf("%s's writer believed it saved successfully, but the final file has no record of it -- a real lost update, not a clean timeout", category)
+		}
+	}
+	if len(final.LastShown) != len(won) {
+		t.Errorf("final cooldown has %d categories, want exactly the %d that actually won the lock -- extra or missing entries beyond the winners", len(final.LastShown), len(won))
+	}
 }
 
 func TestLoadCooldownWholeFileMalformedIsEmpty(t *testing.T) {
