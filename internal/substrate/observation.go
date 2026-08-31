@@ -23,9 +23,9 @@ const (
 	LensTranscriptScan = "transcript_scan"
 )
 
-// SignalType values this build's PreToolUse Lens emits. See HANDOFF.md's
-// Architecture section for which rungs each is candidate evidence for —
-// that mapping lives in commentary, never in a stored field.
+// SignalType values this build's PreToolUse Lens emits. See
+// internal/gate/rules.go for which rungs each is candidate evidence for —
+// that mapping lives in commentary there, never in a stored field.
 const (
 	SignalPermissionModeSnapshot     = "permission_mode_snapshot"
 	SignalAskUserQuestionInvoked     = "ask_user_question_invoked"

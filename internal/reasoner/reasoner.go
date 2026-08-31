@@ -18,9 +18,8 @@ type RungCitation struct {
 }
 
 // Suggestion is one category's optional next-step, framed exactly per
-// HANDOFF.md's "What this is" section: the next rung up, and separately
-// a frontier example, both explicitly optional/fyi, never a ceiling
-// comparison.
+// README's framing: the next rung up, and separately a frontier
+// example, both explicitly optional/fyi, never a ceiling comparison.
 type Suggestion struct {
 	CategoryID  string        `json:"category_id"`
 	CurrentRung int           `json:"current_rung,omitempty"`

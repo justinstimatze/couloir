@@ -294,9 +294,9 @@ type hookSpecificOutput struct {
 	AdditionalContext string `json:"additionalContext"`
 }
 
-// renderNudgeOutput frames a suggestion exactly per HANDOFF.md's "What
-// this is" section: the next rung up, and separately a frontier
-// example, both explicitly optional/fyi, never a ceiling comparison.
+// renderNudgeOutput frames a suggestion exactly per README's framing:
+// the next rung up, and separately a frontier example, both explicitly
+// optional/fyi, never a ceiling comparison.
 func renderNudgeOutput(s *reasoner.Suggestion) (string, error) {
 	var b strings.Builder
 	if s.CurrentRung > 0 {
