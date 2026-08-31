@@ -2,7 +2,17 @@
 
 ## Unreleased
 
-(none)
+Two new meta corpus rows (`r1`, `r2`, `rung_number: null`), paraphrased
+from Addy Osmani's *Agentic Engineering* (O'Reilly, early-release
+manuscript) — not quoted, per its prerelease status. `r1` corroborates
+an existing meta claim that `prompting_structure`'s empty rungs 7-8
+reflect a deliberate design conclusion — the frontier practice already
+lives under other categories, and this row was never meant to fill
+them. `r2` names the
+autonomy/orchestration axis split as a caution alongside
+`parallelization`'s existing cost caution. README's ladder-lineage
+section now credits the same source for the two-axis critique that
+couloir's separate-categories design already answers.
 
 ## [0.1.1] — 2026-08-30 — robustness pass
 

@@ -25,6 +25,16 @@ similar language: those measure a company's rollout, not a person's
 actual habits. Only the shape carries over — every rung's content
 comes from its own independently sourced, named citation.
 
+A single ladder like Yegge's still risks conflating two things that
+don't move together: how far one agent gets before it needs a human,
+and how many agents run at once, coordinated by whom. Addy Osmani's
+*Agentic Engineering* (O'Reilly, forthcoming) argues exactly this —
+that skill at one doesn't transfer to the other, so a ladder that
+folds both into one number obscures which axis actually advanced.
+Keeping categories separate rather than collapsing to a score is
+couloir's existing answer to that problem: `agent_invocation` tracks
+the first axis, `parallelization` the second, independently.
+
 ## How it decides anything
 
 Every claim couloir makes traces back to a real, attributed source. There
