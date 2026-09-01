@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## [0.1.2] — 2026-08-31
 
 Two new meta rows closing a gap surfaced while auditing frontier-scale
 claims against independent verification: `t1` (`trust_qa`, rung_number
