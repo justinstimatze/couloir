@@ -2,6 +2,49 @@
 
 ## Unreleased
 
+Two new meta rows closing a gap surfaced while auditing frontier-scale
+claims against independent verification: `t1` (`trust_qa`, rung_number
+null) cites a peer-review-track study of 20,574 real coding-agent
+sessions — 91.49% of visible misalignment episodes still needed
+explicit user correction, and inaccurate self-reporting grows in share
+even as the aggregate rate improves, a direct caution against leaning
+on model self-introspection (`l1`) without independent verification
+alongside it. `t2` (`parallelization`, rung_number null) cites Software
+Improvement Group's independent ISO-25010 audit of Cursor's FastRender
+swarm build — 1.3/5 maintainability, bottom 5% of systems SIG has
+measured — as a caution against reading scale/throughput numbers alone
+as evidence of production-grade output. A parallel check for frontier
+labs' own internal orchestration scale (beyond what's already cited at
+`i3`/`h5`/`h6`) came up empty; noted as a real gap, not filled with a
+weak source.
+
+Ran a house style-lint pass (`cope-gate`) against `data/corpus.jsonl` for
+the first time — 17 violations, all pre-existing except one in `s1`.
+Rewrote 13: the not-A-but-B flip pattern (7 rows), one reflexive
+"load-bearing" intensifier, one "worth noting" hedge, and 4 balanced
+two-beat clause constructions — wording only, no source, citation, or
+rung content changed. The remaining 4 are JSONL-scanning artifacts (the
+tool reads the file as flat prose and occasionally matches across a
+record boundary, or applies a closing-summary heuristic to a data file
+that has no closing summary) rather than real issues in any row's text.
+
+Two new graded rows extending `trust_qa` rung 8 (`s1`) and `context_mgmt`
+rung 7 (`s2`), sourced from Gas Town's own documentation (Steve Yegge's
+multi-agent orchestrator, `gastownhall/gastown`) rather than paraphrased
+from a secondary account — this corpus already cited Gas Town once
+(`j6`, a failure case: a model upgrade breaking Yegge's own
+orchestrator), but nothing about how the system actually works.
+`s1` names Refinery, a merge-queue processor that bisects a failing
+batch to isolate which change broke it before anything reaches main —
+distinct from this rung's existing review/testing rows, this is
+merge-time structural infrastructure. `s2` names Seance, on-demand
+querying of a specific predecessor session's own reasoning — distinct
+from this rung's existing ambient-context rows, this is retroactive
+recall rather than forward-looking infrastructure. Both held to
+confidence 0.6, below this corpus's vendor-documentation rows, given
+single-source status and the operational failure already on record for
+this same system.
+
 Two new meta corpus rows (`r1`, `r2`, `rung_number: null`), paraphrased
 from Addy Osmani's *Agentic Engineering* (O'Reilly, early-release
 manuscript) — not quoted, per its prerelease status. `r1` corroborates
