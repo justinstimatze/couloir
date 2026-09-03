@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## [0.1.3] — 2026-09-03
 
 One new row (`u1`) closing the one gap left after cross-checking couloir's own ladder against a
 personal Claude Code usage-insights report: `trust_qa` rung 3 was thin (row_count 1, backed only by
