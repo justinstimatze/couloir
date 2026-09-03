@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased
+
+One new row (`u1`) closing the one gap left after cross-checking couloir's own ladder against a
+personal Claude Code usage-insights report: `trust_qa` rung 3 was thin (row_count 1, backed only by
+Cursor's own vendor documentation on doing a single unaided diff read-through). `u1` adds an
+independent practitioner source — Justin Paul's *The AI's Code Looks Right. That's the Problem.* —
+naming four recurring failure shapes to scan for during that read specifically: invented APIs,
+silent scope creep (edits the request never asked for), deleted edge-case handling, and
+convincing-but-wrong logic behind a reassuring comment. Rung 3 moves from thin to grounded.
+
+The usage-insights report itself carries no independent provenance — first-person data about one
+user's own sessions, and its own suggested rule (don't cite unreleased/alpha projects as evidence)
+applies to citing it here too. It pointed at where the gap was; filling it took an outside source.
+
 ## [0.1.2] — 2026-08-31
 
 Two new meta rows closing a gap surfaced while auditing frontier-scale
